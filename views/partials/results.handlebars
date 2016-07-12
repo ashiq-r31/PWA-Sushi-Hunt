@@ -1,0 +1,35 @@
+
+{{#each filtered}}
+<div class="restaurant clearfix animated fadeInUp">
+  <div style="display:inline-block">
+    <img src='{{thumb}}' class="thumb"/>
+    <h4 style="margin-top:1rem; text-align:center">
+      <span style="font-size:14px; color:#8a8a8a; margin-left:0.5rem;">{{cost_for_two}} AED</span>
+    </h4>
+  </div>
+
+  <div style="display:inline-block" class="info">
+
+    <div>
+      <h4>{{name}}</h1>
+    </div>
+
+    <div style="display:inline-block" class="bubble">
+      <img src="images/star.svg"/>
+      <p>{{rating}}</p>
+    </div>
+
+    <div style="display:inline-block; margin-left:1rem" class="bubble">
+      <img src="images/pin.svg">
+      <p>{{location}}</p>
+    </div>
+
+    <div class="directions">
+      <img src="images/direction.svg"/>
+      <p>get directions</p>
+    </div>
+
+  </div> <!--info ends here-->
+
+</div> <!--restaurant ends here-->
+{{/each}}
