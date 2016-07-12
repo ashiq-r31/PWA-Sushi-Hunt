@@ -1,10 +1,13 @@
 var express = require('express');
+var favicon = require('serve-favicon');
+
 var app = express();
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
 var path = require('path');
 var router = express.Router();
 var request = require('request');
 var bodyParser = require('body-parser');
-// var jade = require('jade');
 var exphbs  = require('express-handlebars');
 
 
