@@ -94,6 +94,6 @@ router.get('/results', function(req, res){
 
 app.use('/', router);
 
-app.listen(8888, function(){
-  console.log('Sushi Hunt is listening on port 8888!');
+app.listen(5000, function(){
+  console.log('Sushi Hunt is listening on port 5000!');
 });
