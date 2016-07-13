@@ -9,8 +9,10 @@ var urlsToCache = [
   '/javascripts/main.js'
 ];
 
+version = 'v1';
 
 self.addEventListener('install', function(event) {
+  console.log('[ServiceWorker] Installed version', version);
   event.waitUntil(
     caches.open('sushi-v1')
       .then(function(cache) {
