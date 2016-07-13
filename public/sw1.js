@@ -61,7 +61,7 @@ var urlsToCache_ = [
   '/images/star.svg',
   '/images/direction.svg',
   '/images/back.svg',
-  '/javascripts/main.js'
+  '/javascripts/main2.js'
 ];
 
 version = 'v2';
