@@ -27,9 +27,9 @@ router.get('/', function(req, res){
   res.render('index');
 });
 
-router.get('/feed', function(req, res){
+router.post('/feed', function(req, res){
   locals = {
-   budget: req.query.budget
+   budget: req.body.budget
   }
   res.render('feed', locals);
 });
