@@ -11,11 +11,11 @@ var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
 
-app.engine('handlebars', exphbs({partialsDir: __dirname + '/views/partials'}));
+app.engine('handlebars', exphbs({partialsDir: __dirname + 'public/views/partials'}));
 app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/public/views');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({extended:true}));
