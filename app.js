@@ -37,13 +37,13 @@ router.get('/feed', function(req, res){
 router.get('/results', function(req, res){
 
   var budget = req.query.budget;
-  var options = {
-    url : 'https://developers.zomato.com/api/v2.1/search?entity_id=51&entity_type=city&cuisines=177&sort=cost&order=asc',
+  // var options = {
+  //   url : 'https://developers.zomato.com/api/v2.1/search?entity_id=51&entity_type=city&cuisines=177&sort=cost&order=asc',
+  //
+  //   headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
+  // };
 
-    headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
-  };
-
-  // var options = 'https://rawgit.com/ashiq-r31/sample/master/sample.json';
+  var options = 'https://rawgit.com/ashiq-r31/sample/master/sample.json';
 
   request(options, function(err, response, body){
 
