@@ -23,27 +23,24 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //main routes for the app
 
-router.get('/', function(req, res){
-  res.render('index');
-});
+// router.get('/', function(req, res){
+//   res.render('index');
+// });
 
-router.get('/feed', function(req, res){
-  locals = {
-   budget: req.query.budget
-  }
-  res.render('feed', locals);
+router.get('/', function(req, res){
+  res.render('app-shell');
 });
 
 router.get('/results', function(req, res){
 
   var budget = req.query.budget;
-  // var options = {
-  //   url : 'https://developers.zomato.com/api/v2.1/search?entity_id=51&entity_type=city&cuisines=177&sort=cost&order=asc',
-  //
-  //   headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
-  // };
+  var options = {
+    url : 'https://developers.zomato.com/api/v2.1/search?entity_id=51&entity_type=city&cuisines=177&sort=cost&order=asc',
 
-  var options = 'https://rawgit.com/ashiq-r31/sample/master/sample.json';
+    headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
+  };
+
+  // var options = 'https://rawgit.com/ashiq-r31/sample/master/sample.json';
 
   request(options, function(err, response, body){
 
@@ -63,8 +60,8 @@ router.get('/results', function(req, res){
         arr.cost_for_two = obj.restaurant.average_cost_for_two;
 
         var location = obj.restaurant.location.locality;
-        if (location.length > 16) {
-          arr.location = location.substring(0, 15) + "..";
+        if (location.length > 18) {
+          arr.location = location.substring(0, 17) + "..";
         } else {
           arr.location = location;
         }

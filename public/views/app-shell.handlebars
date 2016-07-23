@@ -2,15 +2,16 @@
   <title>Sushi Hunt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="stylesheets/main.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 </head>
 
 <body class="results-screen">
   <div class="header">
-    <div class="container">
-      <a href="/" class="back">
-        <img src="images/back.svg">
-      </a>
-      <h1 class="header__title"> Restaurants under <span id="budgetPost">{{budget}}</span> AED</h1>
+    <div class="block container">
+      <h4 class="h4">Set your budget</h4>
+      <p style="display:inline-block">AED</p>
+      <input type="text" name="budget" placeholder="">
+      <button id="submit">Hunt Now</button>
     </div>
   </div>
 
@@ -34,20 +35,24 @@
 //     return hashes;
 // }
 
-function urlParam(){
-  var hashes = $('#budgetPost').html();
-  return hashes;
-}
+// function urlParam(){
+//   var hashes = $('[name="budget"]').val();
+//   return hashes;
+// }
+$('#submit').click(function(event){
+  var budget = $('[name="budget"]').val();
 
-var budget = urlParam();
+  console.log(budget + " is your budget amount");
 
-$.get('/results', {budget:budget}, function(data){
-  $('#loader').hide();
-  $('#results').append(data);
+  $.get('/results', {budget:budget}, function(data){
+    $('#loader').hide();
+    $('#results').html(data);
+  });
 });
 
 
+
 </script>
-<link href="//s.mlcdn.co/animate.css", rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 </body>
 <script src="javascripts/main2.js"></script>

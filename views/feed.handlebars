@@ -6,14 +6,6 @@
 </head>
 
 <body class="results-screen">
-  <div class="header">
-    <div class="container">
-      <a href="/" class="back">
-        <img src="images/back.svg">
-      </a>
-      <h1 class="header__title"> Restaurants under <span id="budgetPost">{{budget}}</span> AED</h1>
-    </div>
-  </div>
 
   <div id="results" class="container">
     <div id="loader">
@@ -52,4 +44,4 @@ $.get('/results', {budget:budget}, function(data){
 
 
 </script>
-<link href="//s.mlcdn.co/animate.css", rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
