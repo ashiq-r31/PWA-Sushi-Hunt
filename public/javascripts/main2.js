@@ -8,22 +8,15 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// function urlParam(){
-//     var hashes = window.location.href.slice(window.location.href.indexOf('=') + 1).split('&');
-//     return hashes;
-// }
-
-// function urlParam(){
-//   var hashes = $('[name="budget"]').val();
-//   return hashes;
-// }
-$('#submit').click(function(event){
-  var budget = $('[name="budget"]').val();
-
-  console.log(budget + " is your budget amount");
-
-  $.get('/results', {budget:budget}, function(data){
-    $('#loader').hide();
-    $('#results').html(data);
+$( document ).ready(function() {
+  $('#submit').click(function(event){
+    var budget = $('[name="budget"]').val();
+    $('#empty').hide();
+    $('#restaurants').html("");
+    $('#loader').show();
+    $.get('/results', {budget:budget}, function(data){
+      $('#loader').hide();
+      $('#restaurants').html(data);
+    });
   });
 });

@@ -15,7 +15,7 @@ html {
 
 /* Typography */
 
-h1 {
+.h1 {
   font-size: 3rem;
   font-weight: 400;
   color:white;
@@ -23,9 +23,9 @@ h1 {
   margin-bottom: 1rem;
 }
 
-h3 {
-  font-size:2rem;
-  color:rgba(255,255,255,0.70);
+.h2 {
+  font-size:2.4rem;
+  color:757575;
   font-weight:300;
   line-height: 3rem;
   margin-bottom: 1rem;
@@ -51,7 +51,7 @@ p {
 }
 
 /* Launch Screen */
-
+/*
 .launch-screen {
   background: rgb(225, 106, 156);
   background: -moz-linear-gradient(90deg, rgb(225, 106, 156) 10%, rgb(35, 138, 255) 99%);
@@ -77,7 +77,7 @@ p {
   margin-top:3rem;
   margin-bottom: 2rem;
   margin-left: 2rem;
-}
+}*/
 
 /* Form */
 
@@ -107,7 +107,7 @@ input[type="text"] {
   font-size: 1.4rem;
   font-family: 'Karla', sans-serif;
   cursor: pointer;
-  box-shadow: 0 0 5px 0 #ffb5ce, 0 0 15px 0 #FF6A9C;
+  /*box-shadow: 0 0 5px 0 #ffb5ce, 0 0 15px 0 #FF6A9C;*/
   float:right;
 }
 
@@ -187,6 +187,20 @@ keyframes load {
 
 /* Restaurant */
 
+#empty {
+  padding-top: 12rem;
+  text-align: center;
+}
+
+#empty img {
+  position: relative;
+  left:2rem;
+}
+
+#empty h4 {
+  color:#ABB0B6;
+}
+
 #results {
   margin-top: 12rem;
   background-color: #F2F5F8;
@@ -199,7 +213,8 @@ keyframes load {
   padding:2rem 2rem 1rem 2rem;
   margin-bottom:2rem;
   border-radius: 5px;
-  box-shadow: 0 5px 14px 0 #DAE3EC, 0 -3px 20px 0 #DAE3EC;
+  1px solid #DAE3EC
+  /*box-shadow: 0 5px 14px 0 #DAE3EC, 0 -3px 20px 0 #DAE3EC;*/
 }
 
 .thumb {

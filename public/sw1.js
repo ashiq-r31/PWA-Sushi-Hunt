@@ -2,6 +2,7 @@ var urlsToCache_ = [
   '/',
   '/stylesheets/main.css',
   '/images/sushi.svg',
+  '/images/empty.svg',
   '/images/pin.svg',
   '/images/star.svg',
   '/images/direction.svg',
