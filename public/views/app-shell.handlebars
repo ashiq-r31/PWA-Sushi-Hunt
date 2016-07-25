@@ -27,33 +27,8 @@
 
 
   </div><!--result ends here here-->
-<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 
-<script type="text/javascript" async>
-
-// function urlParam(){
-//     var hashes = window.location.href.slice(window.location.href.indexOf('=') + 1).split('&');
-//     return hashes;
-// }
-
-// function urlParam(){
-//   var hashes = $('[name="budget"]').val();
-//   return hashes;
-// }
-$('#submit').click(function(event){
-  var budget = $('[name="budget"]').val();
-
-  console.log(budget + " is your budget amount");
-
-  $.get('/results', {budget:budget}, function(data){
-    $('#loader').hide();
-    $('#results').html(data);
-  });
-});
-
-
-
-</script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 </body>
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <script src="javascripts/main2.js"></script>

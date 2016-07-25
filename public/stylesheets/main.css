@@ -199,7 +199,7 @@ keyframes load {
   padding:2rem 2rem 1rem 2rem;
   margin-bottom:2rem;
   border-radius: 5px;
-  box-shadow: 0 10px 14px 0 #DAE3EC, 0 0px 4px 0 #DAE3EC;
+  box-shadow: 0 5px 14px 0 #DAE3EC, 0 -3px 20px 0 #DAE3EC;
 }
 
 .thumb {
