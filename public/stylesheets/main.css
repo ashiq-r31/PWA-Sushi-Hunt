@@ -50,7 +50,7 @@ p {
   border-bottom: 2px solid #D4D9DE;
 }
 
-input[type="text"] {
+input[type="number"] {
   -webkit-appearance: none;
   background: none;
   border:none;
