@@ -8,13 +8,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-console.log(document.getElementById("restaurants"));
-function doScaledTimeout(i, node) {
-   setTimeout(function(){
-     document.getElementById("restaurants").appendChild(node).className = "restaurant clearfix animated fadeInUp";
-   }, 100 * i);
- }
-
 $( document ).ready(function() {
   $('#submit').click(function(event){
     var budget = $('[name="budget"]').val();
@@ -23,9 +16,7 @@ $( document ).ready(function() {
     $('#loader').show();
     $.get('/results', {budget:budget}, function(data){
       $('#loader').hide();
-      $(data).each(function(index){
-        doScaledTimeout(index, this);
-      });
+      $('#restaurants').html(data);
     });
   });
 });
