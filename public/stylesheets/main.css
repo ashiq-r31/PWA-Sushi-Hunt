@@ -15,13 +15,6 @@ html {
 
 /* Typography */
 
-.h1 {
-  font-size: 3rem;
-  font-weight: 400;
-  color:white;
-  line-height: 4.2rem;
-  margin-bottom: 1rem;
-}
 
 .h2 {
   font-size:2.4rem;
@@ -50,34 +43,6 @@ p {
   color:#777777;
 }
 
-/* Launch Screen */
-/*
-.launch-screen {
-  background: rgb(225, 106, 156);
-  background: -moz-linear-gradient(90deg, rgb(225, 106, 156) 10%, rgb(35, 138, 255) 99%);
-  background: -webkit-linear-gradient(90deg, rgb(225, 106, 156) 10%, rgb(35, 138, 255) 99%);
-  background: -o-linear-gradient(90deg, rgb(225, 106, 156) 10%, rgb(35, 138, 255) 99%);
-  background: -ms-linear-gradient(90deg, rgb(225, 106, 156) 10%, rgb(35, 138, 255) 99%);
-  background: linear-gradient(180deg, rgb(225, 106, 156) 10%, rgb(35, 138, 255) 99%);
-  text-align: center;
-}
-
-.hero {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left:0;
-  right:0;
-  margin: auto;
-  width:80%;
-  height: 65%;
-}
-
-.sushi {
-  margin-top:3rem;
-  margin-bottom: 2rem;
-  margin-left: 2rem;
-}*/
 
 /* Form */
 
@@ -109,6 +74,7 @@ input[type="text"] {
   cursor: pointer;
   /*box-shadow: 0 0 5px 0 #ffb5ce, 0 0 15px 0 #FF6A9C;*/
   float:right;
+  padding: 0.5rem;
 }
 
 input:focus {
