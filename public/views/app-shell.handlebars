@@ -16,6 +16,9 @@
     </div>
   </div>
 
+  <div id="startLat"></div>
+  <div id="startLon"></div>
+
   <div id="results" class="container">
     <div style="display:none" id="loader">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -38,6 +41,25 @@
   </div><!--result ends here here-->
 
 </body>
+<script>
+  // check for Geolocation support
+  if (navigator.geolocation) {
+  console.log('Geolocation is supported!');
+  }
+  else {
+  console.log('Geolocation is not supported for this Browser/OS version yet.');
+  }
+
+  window.onload = function() {
+  var startPos;
+  var geoSuccess = function(position) {
+    startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess);
+};
+</script>
 <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <script src="javascripts/main2.js"></script>
