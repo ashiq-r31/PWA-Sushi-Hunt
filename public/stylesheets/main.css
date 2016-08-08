@@ -38,6 +38,14 @@ html {
   margin-bottom: 1rem;
 }
 
+.placeholder {
+  color:#ABB0B6;
+}
+
+.center {
+  text-align: center;
+}
+
 p {
   font-size: 1.4rem;
   color:#777777;
@@ -75,6 +83,11 @@ input[type="number"] {
   /*box-shadow: 0 0 5px 0 #ffb5ce, 0 0 15px 0 #FF6A9C;*/
   float:right;
   padding: 0.5rem;
+}
+
+#submit > img {
+  vertical-align: middle;
+  padding-left:0.75rem;
 }
 
 input:focus {
@@ -119,10 +132,10 @@ label {
   z-index: 1000;*/
  }
 
- .header h4 {
-   text-align: center;
- }
-
+.header .placeholder,
+.header button {
+  display: inline-block;
+}
 
 #loader {
   position:absolute;

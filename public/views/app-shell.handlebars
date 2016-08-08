@@ -9,15 +9,13 @@
 <body class="results-screen">
   <div class="header">
     <div class="block container">
-      <h4 class="h4">Set your budget</h4>
-      <p style="display:inline-block">AED</p>
-      <input type="number" name="budget" autocomplete="off" pattern="[0-9]" placeholder="100, 200, etc.">
-      <button id="submit">Hunt Now</button>
+      <h4 class="h4 center">Sushi Hunt</h4>
+      <h4 id="location" class="h4 placeholder">Tap 'Detect' to find sushi nearby</h4>
+      <!-- <p style="display:inline-block">AED</p> -->
+      <!-- <input type="number" name="budget" autocomplete="off" pattern="[0-9]" placeholder="Tap 'Detect' to find sushi near you"> -->
+      <button id="submit">Detect<img src="images/detect.svg"></button>
     </div>
   </div>
-
-  <div id="startLat"></div>
-  <div id="startLon"></div>
 
   <div id="results" class="container">
     <div style="display:none" id="loader">
@@ -41,6 +39,8 @@
   </div><!--result ends here here-->
 
 </body>
+
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script>
   // check for Geolocation support
   if (navigator.geolocation) {
@@ -50,16 +50,59 @@
   console.log('Geolocation is not supported for this Browser/OS version yet.');
   }
 
-  window.onload = function() {
-  var startPos;
-  var geoSuccess = function(position) {
-    startPos = position;
-    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  function get(url) {
+    return new Promise(function(resolve, reject) {
+
+      var req = new XMLHttpRequest();
+      req.open('GET', url);
+
+      req.onload = function() {
+        if (req.status == 200) {
+          resolve(req.response);
+        }
+        else {
+          reject(Error(req.statusText));
+        }
+      };
+
+      req.onerror = function() {
+        reject(Error("Network Error"));
+      };
+
+      req.send();
+    }).then(function(response){
+      document.getElementById('restaurants').innerHTML = response;
+    }).catch(function(error){
+      console.log(error);
+    });
+  }
+
+  function findLocation() {
+    return new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    }).then(function(position){
+        geoSuccess(position);
+        console.log("Successfully appended latlong to page");
+      }).then(function(position){
+        $('#empty').hide();
+        $('#restaurants').html("");
+        $('#loader').show();
+        get('/results');
+        console.log("About to fetch results from Zomato");
+      }).catch(function(error){
+        console.log(error);
+      });
   };
-  navigator.geolocation.getCurrentPosition(geoSuccess);
-};
+
+  function geoSuccess(position) {
+    document.getElementById('location').innerHTML = position.coords.latitude;
+    document.getElementById('location').innerHTML = position.coords.longitude;
+  };
+
+  var detect = document.getElementById('submit');
+  detect.addEventListener('click', findLocation);
+
+
 </script>
-<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <script src="javascripts/main2.js"></script>

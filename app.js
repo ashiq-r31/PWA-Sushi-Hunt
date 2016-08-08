@@ -33,9 +33,9 @@ router.get('/', function(req, res){
 
 router.get('/results', function(req, res){
 
-  var budget = req.query.budget;
+  var budget = 500;
   var options = {
-    url : 'https://developers.zomato.com/api/v2.1/search?entity_id=51&entity_type=city&count=10&cuisines=177&sort=cost&order=asc',
+    url : 'https://developers.zomato.com/api/v2.1/search?count=10&lat=25.064453999999998&lon=55.1305951&radius=3000&cuisines=177&sort=real_distance&order=asc',
 
     headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
   };
@@ -72,18 +72,18 @@ router.get('/results', function(req, res){
         return arr;
       });
 
-      var maxNum = parseInt(budget);
-      var filtered = [];
-      results.forEach(function(obj){
+      // var maxNum = parseInt(budget);
+      // var filtered = [];
+      // results.forEach(function(obj){
+      //
+      //       if (obj.cost_for_two < maxNum){
+      //         filtered.push(obj);
+      //       } else if (maxNum === NaN) {
+      //         filtered.push(obj);
+      //       }
+      // });
 
-            if (obj.cost_for_two < maxNum){
-              filtered.push(obj);
-            } else if (maxNum === NaN) {
-              filtered.push(obj);
-            }
-      });
-
-      res.render('partials/results', {filtered:filtered});
+      res.render('partials/results', {filtered:results});
     }
   });
 
