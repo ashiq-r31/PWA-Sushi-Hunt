@@ -53,15 +53,15 @@ router.get('/results', function(req, res){
 
         var name = obj.restaurant.name;
         if (name.length > 25) {
-          arr.name = name.substring(0, 24) + "..";
+          arr.name = name.substr(0, 24) + "..";
         } else {
           arr.name = name;
         }
         arr.cost_for_two = obj.restaurant.average_cost_for_two;
 
         var location = obj.restaurant.location.locality;
-        if (location.length > 18) {
-          arr.location = location.substring(0, 17) + "..";
+        if (location.length > 25) {
+          arr.location = location.substr(0, 24) + "..";
         } else {
           arr.location = location;
         }

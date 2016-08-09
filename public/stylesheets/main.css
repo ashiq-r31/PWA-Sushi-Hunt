@@ -27,8 +27,6 @@ html {
 .h4-bold {
   font-size:1.8rem;
   font-weight:500;
-  line-height: 3rem;
-  margin-bottom: 1rem;
 }
 
 .h4 {
@@ -252,7 +250,7 @@ keyframes load {
   padding-left:1rem;
   border:2px solid #ececec;
   border-radius:30px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .bubble img {

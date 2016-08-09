@@ -10,7 +10,7 @@
   <div class="header">
     <div class="block container">
       <h4 class="h4 center">Sushi Hunt</h4>
-      <h4 id="location" class="h4 placeholder">Tap 'Detect' to find sushi nearby</h4>
+      <h4 id="location" class="h4 placeholder"><span id="lat">Tap 'Detect' to find sushi nearby</span>, <span id="long"></span></h4>
       <!-- <p style="display:inline-block">AED</p> -->
       <!-- <input type="number" name="budget" autocomplete="off" pattern="[0-9]" placeholder="Tap 'Detect' to find sushi near you"> -->
       <button id="submit">Detect<img src="images/detect.svg"></button>
@@ -71,6 +71,7 @@
 
       req.send();
     }).then(function(response){
+      $('#loader').hide();
       document.getElementById('restaurants').innerHTML = response;
     }).catch(function(error){
       console.log(error);
@@ -95,8 +96,14 @@
   };
 
   function geoSuccess(position) {
-    document.getElementById('location').innerHTML = position.coords.latitude;
-    document.getElementById('location').innerHTML = position.coords.longitude;
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    var latshort = lat.toFixed(10);
+    var longshort = long.toFixed(10);
+
+    console.log(latshort);
+    document.getElementById('lat').innerHTML = latshort;
+    document.getElementById('long').innerHTML = longshort;
   };
 
   var detect = document.getElementById('submit');
