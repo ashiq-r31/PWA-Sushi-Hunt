@@ -29,7 +29,7 @@
     <div id="empty">
       <img src="images/empty.svg">
       <h1 class="h2">Got a sushi craving?<h1>
-      <h4 class="h4">Set your budget above to find<br> the best sushi restaurants</h4>
+      <h4 class="h4">Find the best sushi restaurants<br> in your neighborhood</h4>
     </div>
 
     <div id="restaurants">
@@ -92,6 +92,7 @@
         console.log("About to fetch results from Zomato");
       }).catch(function(error){
         console.log(error);
+        document.getElementById('lat').innerHTML = "Failed to find your location.";
       });
   };
 
