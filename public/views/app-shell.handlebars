@@ -10,7 +10,7 @@
   <div class="header">
     <div class="block container">
       <h4 class="h4 center">Sushi Hunt</h4>
-      <h4 id="location" class="h4 placeholder"><span id="lat">Tap 'Detect' to find sushi nearby</span>, <span id="long"></span></h4>
+      <h4 id="location" class="h4 placeholder"><span id="lat">Tap 'Detect' to find sushi nearby</span> <span id="long"></span></h4>
       <!-- <p style="display:inline-block">AED</p> -->
       <!-- <input type="number" name="budget" autocomplete="off" pattern="[0-9]" placeholder="Tap 'Detect' to find sushi near you"> -->
       <button id="submit">Detect<img src="images/detect.svg"></button>
@@ -98,7 +98,7 @@
   function geoSuccess(position) {
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
-    var latshort = lat.toFixed(10);
+    var latshort = lat.toFixed(10) + ", ";
     var longshort = long.toFixed(10);
 
     console.log(latshort);

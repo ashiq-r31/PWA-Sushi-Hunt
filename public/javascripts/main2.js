@@ -7,16 +7,3 @@ if ('serviceWorker' in navigator) {
     console.log('ServiceWorker registration failed: ', err);
   });
 }
-// 
-// $( document ).ready(function() {
-//   $('#submit').click(function(event){
-//     var budget = $('[name="budget"]').val();
-//     $('#empty').hide();
-//     $('#restaurants').html("");
-//     $('#loader').show();
-//     $.get('/results', {budget:budget}, function(data){
-//       $('#loader').hide();
-//       $('#restaurants').html(data);
-//     });
-//   });
-// });
