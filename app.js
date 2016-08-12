@@ -52,7 +52,11 @@ router.get('/results', function(req, res){
         } else {
           arr.name = name;
         }
+
+        arr.currency = obj.restaurant.currency;
         arr.cost_for_two = obj.restaurant.average_cost_for_two;
+
+        console.log(arr.currency);
 
         var location = obj.restaurant.location.locality;
         if (location.length > 25) {
