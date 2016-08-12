@@ -37,6 +37,14 @@ router.get('/results', function(req, res){
     headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
   };
 
+  function shortenString(arr, string){
+    if (string.length > 25) {
+      return arr.string = string.substr(0, 24) + "..";
+    } else {
+      return arr.string = string;
+    }
+  }
+
   request(options, function(err, response, body){
 
     if(!err && response.statusCode === 200) {
@@ -47,31 +55,24 @@ router.get('/results', function(req, res){
         var arr = {};
 
         var name = obj.restaurant.name;
-        if (name.length > 25) {
-          arr.name = name.substr(0, 24) + "..";
-        } else {
-          arr.name = name;
-        }
+        arr.name = shortenString(arr, name);
 
         arr.currency = obj.restaurant.currency;
         arr.cost_for_two = obj.restaurant.average_cost_for_two;
 
-        console.log(arr.currency);
-
         var location = obj.restaurant.location.locality;
-        if (location.length > 25) {
-          arr.location = location.substr(0, 24) + "..";
-        } else {
-          arr.location = location;
-        }
+        arr.location = shortenString(arr, location);
 
         arr.rating = obj.restaurant.user_rating.aggregate_rating;
         arr.thumb = obj.restaurant.thumb;
 
         return arr;
+
       });
 
       res.render('partials/results', {filtered:results});
+    } else {
+      console.log(error);
     }
   });
 

@@ -13,6 +13,9 @@ html {
   margin:0 auto;
 }
 
+.row {
+  width:100%;
+}
 /* Typography */
 
 
