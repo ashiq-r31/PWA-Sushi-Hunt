@@ -23,24 +23,19 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //main routes for the app
 
-// router.get('/', function(req, res){
-//   res.render('index');
-// });
-
 router.get('/', function(req, res){
   res.render('app-shell');
 });
 
 router.get('/results', function(req, res){
+  var lat = req.query.lat;
+  var long = req.query.long;
+  var url = 'https://developers.zomato.com/api/v2.1/search?count=10&lat=' + lat + '&lon=' + long +  '&radius=2000&cuisines=177&sort=real_distance&order=asc';
 
-  var budget = 500;
   var options = {
-    url : 'https://developers.zomato.com/api/v2.1/search?count=10&lat=25.064453999999998&lon=55.1305951&radius=3000&cuisines=177&sort=real_distance&order=asc',
-
+    url : url,
     headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
   };
-
-  // var options = 'https://rawgit.com/ashiq-r31/sample/master/sample.json';
 
   request(options, function(err, response, body){
 
@@ -72,17 +67,6 @@ router.get('/results', function(req, res){
         return arr;
       });
 
-      // var maxNum = parseInt(budget);
-      // var filtered = [];
-      // results.forEach(function(obj){
-      //
-      //       if (obj.cost_for_two < maxNum){
-      //         filtered.push(obj);
-      //       } else if (maxNum === NaN) {
-      //         filtered.push(obj);
-      //       }
-      // });
-
       res.render('partials/results', {filtered:results});
     }
   });
@@ -90,10 +74,7 @@ router.get('/results', function(req, res){
 });
 
 app.use('/', router);
-//
-// app.listen(5000, function(){
-//   console.log('Sushi Hunt is listening on port 5000!');
-// });
+
 
 app.set('port', (process.env.PORT || 5000));
 
