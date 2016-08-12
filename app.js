@@ -63,6 +63,9 @@ router.get('/results', function(req, res){
         var location = obj.restaurant.location.locality;
         arr.location = shortenString(arr, location);
 
+        arr.lat = obj.restaurant.location.latitude;
+        arr.long = obj.restaurant.location.longitude;
+
         arr.rating = obj.restaurant.user_rating.aggregate_rating;
         arr.thumb = obj.restaurant.thumb;
 
