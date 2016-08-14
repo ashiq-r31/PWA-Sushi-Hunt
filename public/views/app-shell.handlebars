@@ -40,7 +40,6 @@
 
 </body>
 
-<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script>
 
 if (navigator.geolocation) {
@@ -98,14 +97,14 @@ function geoFailure(error){
 }
 
 function searchRestaurants(latlng) {
-  $('#empty').hide();
-  $('#restaurants').html("");
-  $('#loader').show();
+  document.getElementById('empty').style.display = 'none';
+  document.getElementById('restaurants').innerHTML = '';
+  document.getElementById('loader').style.display = 'block';
   return get('/results/?lat=' + latlng.lat + '&long=' + latlng.long);
 }
 
 function showRestaurants(restaurants) {
-  $('#loader').hide();
+  document.getElementById('loader').style.display = 'none';
   document.getElementById('restaurants').innerHTML = restaurants;
 }
 
@@ -119,9 +118,6 @@ function main() {
 
 var detect = document.getElementById('submit');
 detect.addEventListener('click', main);
-
-
-
 
 </script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
