@@ -12,12 +12,12 @@ var urlsToCache_ = [
   '/images/sushi-192.png'
 ];
 
-version = 'v7';
+version = 'v8';
 
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker] Installed version', version);
   event.waitUntil(
-    caches.open('sushi-v7')
+    caches.open('sushi-v8')
       .then(function(cache) {
       console.log("opened cache");
       return cache.addAll(urlsToCache_);
@@ -36,13 +36,13 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('activate', function(event) {
 
-  var cacheWhitelist = ['sushi-v7'];
+  var cacheWhitelist = ['sushi-v8'];
 
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if ('sushi-v7' && cacheWhitelist.indexOf(cacheName) === -1) {
+          if ('sushi-v8' && cacheWhitelist.indexOf(cacheName) === -1) {
             console.log('Deleted old cache');
             return caches.delete(cacheName);
           }
