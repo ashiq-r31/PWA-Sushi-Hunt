@@ -180,11 +180,6 @@ label {
   /*box-shadow: 0 5px 14px 0 #DAE3EC, 0 -3px 20px 0 #DAE3EC;*/
 }
 
-img[src*="img-placeholder"] {
-  height:2rem;
-  width: 2rem;
-}
-
 .thumb {
   height: 8rem;
   width: 8rem;
