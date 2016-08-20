@@ -150,17 +150,20 @@ label {
 
 /* Results */
 
-#empty {
+#empty,
+#no-connection {
   padding-top: 12rem;
   text-align: center;
 }
 
-#empty img {
+#empty img,
+#no-connection img {
   position: relative;
   left:2rem;
 }
 
-#empty h4 {
+#empty h4,
+#no-connection h4 {
   color:#ABB0B6;
 }
 

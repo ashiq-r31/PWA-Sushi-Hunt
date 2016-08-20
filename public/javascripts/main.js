@@ -69,15 +69,15 @@ function searchRestaurants(latlng) {
   // return get('/results/?lat=25.14071&long=55.22631799999999');
 }
 
-function showRestaurants(restaurants) {
-  var content;
-  if (restaurants.length === 0) {
-    content = document.getElementById('restaurants').innerHTML = "<p>No restaurants near you</p>";
-  } else {
-    content = document.getElementById('restaurants').innerHTML = restaurants;
-  }
+function searchFail(restaurants) {
   document.getElementById('loader').style.display = 'none';
-  return content;
+  document.getElementById('no-connection').style.display = 'block';
+  return Promise.reject(error);
+}
+
+function showRestaurants(restaurants) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('restaurants').innerHTML = restaurants;
 }
 
 function main() {
