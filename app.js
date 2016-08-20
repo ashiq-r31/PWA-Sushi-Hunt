@@ -7,18 +7,15 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 var path = require('path');
 var router = express.Router();
 var request = require('request');
-var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
 
 app.engine('handlebars', exphbs({partialsDir: __dirname + 'public/views/partials'}));
 app.set('view engine', 'handlebars');
-app.use(bodyParser.json());
 
 app.set('views', __dirname + '/public/views');
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({extended:true}));
 
 
 //main routes for the app
@@ -34,7 +31,8 @@ router.get('/results', function(req, res){
 
   var options = {
     url : url,
-    headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'}
+    headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'},
+    gzip:true
   };
 
   function shortenString(arr, string){
@@ -45,13 +43,14 @@ router.get('/results', function(req, res){
     }
   }
 
-  request(options, function(err, response, body){
+  function checkRestaurants(object) {
+    if (object.length === 0) {
 
-    if(!err && response.statusCode === 200) {
-      var respObj = JSON.parse(body);
-      var restaurants = respObj.restaurants;
+      res.render('partials/no-restaurants');
 
-      var results = restaurants.map(function(obj){
+    } else {
+
+      var results = object.map(function(obj){
         var arr = {};
 
         var name = obj.restaurant.name;
@@ -69,11 +68,25 @@ router.get('/results', function(req, res){
         arr.rating = obj.restaurant.user_rating.aggregate_rating;
         arr.thumb = obj.restaurant.thumb;
 
-        return arr;
+        if (arr.thumb.length === 0) {
+          arr.thumb = "images/img-placeholder.svg";
+        }
 
+        return arr;
       });
 
       res.render('partials/results', {filtered:results});
+    }
+  }
+
+  request(options, function(err, response, body){
+
+    if(!err && response.statusCode === 200) {
+      var respObj = JSON.parse(body);
+      var restaurants = respObj.restaurants;
+
+      checkRestaurants(restaurants);
+
     } else {
       console.log(error);
     }

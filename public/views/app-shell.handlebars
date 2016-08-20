@@ -11,14 +11,12 @@
     <div class="block container">
       <h4 class="h4 center">Sushi Hunt</h4>
       <h4 id="location" class="h4 placeholder"><span id="lat">Tap 'Detect' to find sushi nearby</span> <span id="long"></span></h4>
-      <!-- <p style="display:inline-block">AED</p> -->
-      <!-- <input type="number" name="budget" autocomplete="off" pattern="[0-9]" placeholder="Tap 'Detect' to find sushi near you"> -->
       <button id="submit">Detect<img src="images/detect.svg"></button>
     </div>
   </div>
 
   <div id="results" class="container">
-    <div style="display:none" id="loader">
+    <div style="display:none" id="loader" class="loadSpin">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
       <path fill="#8a8a8a" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
@@ -26,99 +24,16 @@
       </svg>
     </div>
 
-    <div id="empty">
+    <div id="empty" class="fadeIn">
       <img src="images/empty.svg">
       <h1 class="h2">Got a sushi craving?<h1>
       <h4 class="h4">Find the best sushi restaurants<br> in your neighborhood</h4>
     </div>
 
-    <div id="restaurants">
-
-    </div>
+    <div id="restaurants"></div>
 
   </div><!--result ends here here-->
 
 </body>
 
-<script>
-
-if (navigator.geolocation) {
-console.log('Geolocation is supported!');
-}
-else {
-console.log('Geolocation is not supported for this Browser/OS version yet.');
-}
-
-function get(url) {
-  return new Promise(function(resolve, reject) {
-    var req = new XMLHttpRequest();
-
-    req.open('GET', url);
-    req.onload = function() {
-      if (req.status == 200) {
-        resolve(req.response);
-      }
-      else {
-        reject(Error(req.statusText));
-      }
-    };
-
-    req.onerror = function() {
-      reject(Error("Network Error"));
-    };
-    req.send();
-  })
-}
-
-function findLocation() {
-    return new Promise(function(resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
-
-function geoSuccess(position) {
-  var lat = position.coords.latitude;
-  var long = position.coords.longitude;
-  var latshort = lat.toFixed(10) + ", ";
-  var longshort = long.toFixed(10);
-
-  document.getElementById('lat').innerHTML = latshort;
-  document.getElementById('long').innerHTML = longshort;
-
-  var latlng = {};
-  latlng.lat = lat;
-  latlng.long = long;
-  return latlng;
-};
-
-function geoFailure(error){
-  console.log(error);
-  document.getElementById('lat').innerHTML = "Failed to find your location.";
-}
-
-function searchRestaurants(latlng) {
-  document.getElementById('empty').style.display = 'none';
-  document.getElementById('restaurants').innerHTML = '';
-  document.getElementById('loader').style.display = 'block';
-  return get('/results/?lat=' + latlng.lat + '&long=' + latlng.long);
-}
-
-function showRestaurants(restaurants) {
-  document.getElementById('loader').style.display = 'none';
-  document.getElementById('restaurants').innerHTML = restaurants;
-}
-
-function main() {
-  findLocation()
-  .then(geoSuccess)
-  .then(searchRestaurants)
-  .then(showRestaurants)
-  .catch(geoFailure);
-}
-
-var detect = document.getElementById('submit');
-detect.addEventListener('click', main);
-
-</script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <script src="javascripts/main.js"></script>

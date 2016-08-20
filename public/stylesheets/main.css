@@ -1,3 +1,4 @@
+
 * {
   margin:0;
   box-sizing: border-box;
@@ -8,6 +9,7 @@ html {
   font-size:10px;
 }
 
+
 .container {
   max-width: 95%;
   margin:0 auto;
@@ -16,7 +18,6 @@ html {
 .row {
   width:100%;
 }
-/* Typography */
 
 
 .h2 {
@@ -39,6 +40,11 @@ html {
   margin-bottom: 1rem;
 }
 
+p {
+  font-size: 1.4rem;
+  color:#777777;
+}
+
 .placeholder {
   color:#ABB0B6;
 }
@@ -47,9 +53,12 @@ html {
   text-align: center;
 }
 
-p {
-  font-size: 1.4rem;
-  color:#777777;
+.right {
+  float:right;
+}
+
+.left {
+  float:left;
 }
 
 
@@ -124,13 +133,6 @@ label {
   top: 0;
   padding: 16px 16px 0 10px;
   z-index: -1000;
-  /*color: #FFF;
-  background: rgb(225, 106, 156);
-
-  font-size: 20px;
-  box-shadow: 0 14px 42px 0 rgba(0, 0, 0, 0.3);
-
-  z-index: 1000;*/
  }
 
 .header .placeholder,
@@ -143,29 +145,10 @@ label {
   top:45%;
   left:45%;
   transform:translate(-50%, -50%)
-  -webkit-animation: load 1s infinite linear;
-  animation: load 1s infinite linear;
 }
 
-@-webkit-keyframes load {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
 
-keyframes load {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-/* Restaurant */
+/* Results */
 
 #empty {
   padding-top: 12rem;
@@ -197,6 +180,11 @@ keyframes load {
   /*box-shadow: 0 5px 14px 0 #DAE3EC, 0 -3px 20px 0 #DAE3EC;*/
 }
 
+img[src*="img-placeholder"] {
+  height:2rem;
+  width: 2rem;
+}
+
 .thumb {
   height: 8rem;
   width: 8rem;
@@ -210,13 +198,6 @@ keyframes load {
   overflow:auto;
 }
 
-.right {
-  float:right;
-}
-
-.left {
-  float:left;
-}
 
 .directions {
   display:block;
@@ -231,19 +212,6 @@ keyframes load {
   border-radius:3px;
   max-width:14rem;
 
-}
-.directions img,
-.directions p {
-  display: inline-block;
-}
-
-.directions img {
-  height:14px;
-  margin-right:0.5rem;
-}
-
-.directions p {
-  font-size:14px;
 }
 
 .bubble {
@@ -268,4 +236,55 @@ keyframes load {
 
 .info {
   padding-left:2rem;
+}
+
+
+/* animations */
+@-webkit-keyframes loadSpin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+keyframes loadSpin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.loadSpin {
+  -webkit-animation: loadSpin 1s infinite linear;
+  animation: loadSpin 1s infinite linear;
 }
