@@ -14,6 +14,7 @@ console.log('Geolocation is not supported for this Browser/OS version yet.');
 }
 
 function get(url) {
+  console.log("get url");
   return new Promise(function(resolve, reject) {
     var req = new XMLHttpRequest();
 
@@ -28,6 +29,7 @@ function get(url) {
     };
 
     req.onerror = function() {
+      searchFail();
       reject(Error("Network Error"));
     };
     req.send();
@@ -35,12 +37,14 @@ function get(url) {
 }
 
 function findLocation() {
+    console.log("findLocation");
     return new Promise(function(resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
 
 function geoSuccess(position) {
+  console.log("geoSuccess");
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
   var latshort = lat.toFixed(10) + ", ";
@@ -48,39 +52,39 @@ function geoSuccess(position) {
 
   document.getElementById('lat').innerHTML = latshort + " " + longshort;
 
-  var latlng = {
-    lat: lat,
-    long: long
-  };
+  var latlng = {lat:lat, long:long};
 
   return latlng;
 };
 
 function geoFailure(error){
+  console.log("geoFailure");
   document.getElementById('lat').innerHTML = "Failed to find your location.";
   return Promise.reject(error);
 }
 
 function searchRestaurants(latlng) {
+  console.log("searchRestaurants");
   document.getElementById('empty').style.display = 'none';
   document.getElementById('restaurants').innerHTML = '';
   document.getElementById('loader').style.display = 'block';
   return get('/results/?lat=' + latlng.lat + '&long=' + latlng.long);
-  // return get('/results/?lat=25.14071&long=55.22631799999999');
 }
 
-function searchFail(restaurants) {
+function searchFail() {
+  console.log("searchFail");
   document.getElementById('loader').style.display = 'none';
   document.getElementById('no-connection').style.display = 'block';
-  return Promise.reject(error);
 }
 
 function showRestaurants(restaurants) {
+  console.log("showRestaurants");
   document.getElementById('loader').style.display = 'none';
   document.getElementById('restaurants').innerHTML = restaurants;
 }
 
 function main() {
+  console.log("clicked main");
   findLocation()
   .then(geoSuccess, geoFailure)
   .then(searchRestaurants)
