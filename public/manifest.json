@@ -5,8 +5,8 @@
   "display": "standalone",
   "orientation":"portrait",
   "icons": [{
-    "src": "images/sushi-196.svg",
+    "src": "images/sushi-196.png",
     "sizes": "196x196",
-    "type": "image/svg"
+    "type": "image/png"
   }]
 }
