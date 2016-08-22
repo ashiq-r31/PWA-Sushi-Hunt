@@ -13,12 +13,12 @@ var urlsToCache_ = [
   '/javascripts/manifest.json'
 ];
 
-version = 'v9';
+version = 'v1';
 
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker] Installed version', version);
   event.waitUntil(
-    caches.open('sushi-v9')
+    caches.open('sushi-v1')
       .then(function(cache) {
       console.log("opened cache");
       return cache.addAll(urlsToCache_);
@@ -37,13 +37,13 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('activate', function(event) {
 
-  var cacheWhitelist = ['sushi-v9'];
+  var cacheWhitelist = ['sushi-v1'];
 
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if ('sushi-v9' && cacheWhitelist.indexOf(cacheName) === -1) {
+          if ('sushi-v1' && cacheWhitelist.indexOf(cacheName) === -1) {
             console.log('Deleted old cache');
             return caches.delete(cacheName);
           }
