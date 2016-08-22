@@ -10,11 +10,11 @@ var urlsToCache_ = [
   '/images/detect.svg',
   '/images/direction.svg',
   '/images/sushi-48.png',
-  // '/images/sushi-72.png',
-  // '/images/sushi-96.png',
-  // '/images/sushi-144.png',
-  // '/images/sushi-168.png',
-  // '/images/sushi-192.png',
+  '/images/sushi-72.png',
+  '/images/sushi-96.png',
+  '/images/sushi-144.png',
+  '/images/sushi-168.png',
+  '/images/sushi-192.png',
   '/javascripts/main.js'
 ];
 
