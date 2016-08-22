@@ -151,7 +151,8 @@ label {
 /* Results */
 
 #empty,
-#no-connection {
+#no-connection,
+#no-location {
   padding-top: 12rem;
   text-align: center;
 }
@@ -162,8 +163,14 @@ label {
   left:2rem;
 }
 
+#no-location img {
+  position: relative;
+  bottom:2rem;
+}
+
 #empty h4,
-#no-connection h4 {
+#no-connection h4,
+#no-location h4 {
   color:#ABB0B6;
 }
 

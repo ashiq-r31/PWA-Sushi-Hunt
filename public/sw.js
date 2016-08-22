@@ -3,6 +3,7 @@ var urlsToCache_ = [
   '/stylesheets/main.css',
   '/images/sushi.svg',
   '/images/empty.svg',
+  '/images/no-location.svg',
   '/images/sad.svg',
   '/images/pin.svg',
   '/images/star.svg',
@@ -13,12 +14,12 @@ var urlsToCache_ = [
   '/javascripts/main.js'
 ];
 
-version = 'v1';
+version = 'v3';
 
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker] Installed version', version);
   event.waitUntil(
-    caches.open('sushi-v1')
+    caches.open('sushi-v3')
       .then(function(cache) {
       console.log("opened cache");
       return cache.addAll(urlsToCache_);
@@ -37,13 +38,13 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('activate', function(event) {
 
-  var cacheWhitelist = ['sushi-v1'];
+  var cacheWhitelist = ['sushi-v3'];
 
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if ('sushi-v1' && cacheWhitelist.indexOf(cacheName) === -1) {
+          if ('sushi-v3' && cacheWhitelist.indexOf(cacheName) === -1) {
             console.log('Deleted old cache');
             return caches.delete(cacheName);
           }

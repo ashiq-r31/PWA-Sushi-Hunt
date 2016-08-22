@@ -51,6 +51,7 @@ function geoSuccess(position) {
   var longshort = long.toFixed(10);
 
   document.getElementById('lat').innerHTML = latshort + " " + longshort;
+  // document.getElementById('lat').innerHTML = "25.14071, 55.2263179999";
 
   var latlng = {lat:lat, long:long};
 
@@ -59,7 +60,9 @@ function geoSuccess(position) {
 
 function geoFailure(error){
   console.log("geoFailure");
+  document.getElementById('empty').style.display = 'none';
   document.getElementById('lat').innerHTML = "Failed to find your location.";
+  document.getElementById('no-location').style.display = 'block';
   return Promise.reject(error);
 }
 
@@ -67,8 +70,10 @@ function searchRestaurants(latlng) {
   console.log("searchRestaurants");
   document.getElementById('empty').style.display = 'none';
   document.getElementById('restaurants').innerHTML = '';
+  //TODO: Check if the above code affects our hidden divss
   document.getElementById('loader').style.display = 'block';
   return get('/results/?lat=' + latlng.lat + '&long=' + latlng.long);
+  // return get('/results/?lat=25.14071&long=55.22631799999999');
 }
 
 function searchFail() {
