@@ -8,7 +8,7 @@ var urlsToCache_ = [
   '/images/pin.svg',
   '/images/star.svg',
   '/images/detect.svg',
-  '/images/sushi-192.png',
+  '/images/sushi-196.png',
   '/javascripts/main.js',
   '/javascripts/manifest.json'
 ];
