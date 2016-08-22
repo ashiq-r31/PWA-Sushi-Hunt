@@ -61,7 +61,7 @@ function geoSuccess(position) {
 function geoFailure(error){
   console.log("geoFailure");
   document.getElementById('empty').style.display = 'none';
-  document.getElementById('lat').innerHTML = "Failed to find your location.";
+  document.getElementById('lat').innerHTML = "Failed to find your location";
   document.getElementById('no-location').style.display = 'block';
   return Promise.reject(error);
 }
