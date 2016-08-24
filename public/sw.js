@@ -13,7 +13,7 @@ var urlsToCache_ = [
   '/manifest.json'
 ];
 
-version = 'v5';
+version = 'v5.5';
 
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker] Installed version', version);

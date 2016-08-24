@@ -29,22 +29,43 @@ function get(url) {
     };
 
     req.onerror = function() {
-      searchFail();
+      connectionFail();
       reject(Error("Network Error"));
     };
     req.send();
   })
 }
 
+function gpsFail() {
+  document.getElementById('lat').innerHTML = "Bad news! We cannot find you.";
+  document.getElementById('no-location').style.display = 'block';
+}
+
+function emptyNone() {
+  document.getElementById('empty').style.display = 'none';
+}
+
+function loaderNone() {
+  document.getElementById('loader').style.display = 'none';
+}
+
+function loaderBlock() {
+  document.getElementById('loader').style.display = 'block';
+}
+
+function connectionFail() {
+  loaderNone();
+  document.getElementById('lat').innerHTML = "Bad news! We need the internet.";
+  document.getElementById('no-connection').style.display = 'block';
+}
+
 function findLocation() {
-    console.log("findLocation");
     return new Promise(function(resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
 
 function geoSuccess(position) {
-  console.log("geoSuccess");
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
   var latshort = lat.toFixed(10) + ", ";
@@ -59,39 +80,29 @@ function geoSuccess(position) {
 };
 
 function geoFailure(error){
-  document.getElementById('empty').style.display = 'none';
+  emptyNone();
   if(error.code === 2) {
     searchFail();
   } else {
-    document.getElementById('lat').innerHTML = "Failed to find your location";
-    document.getElementById('no-location').style.display = 'block';
+    gpsFail();
   }
   return Promise.reject(error.code);
 }
 
 function searchRestaurants(latlng) {
-  console.log("searchRestaurants");
-  document.getElementById('empty').style.display = 'none';
+  emptyNone();
   document.getElementById('restaurants').innerHTML = '';
-  document.getElementById('loader').style.display = 'block';
+  loaderBlock();
   return get('/results/?lat=' + latlng.lat + '&long=' + latlng.long);
   // return get('/results/?lat=25.14071&long=55.22631799999999');
 }
 
-function searchFail() {
-  console.log("searchFail");
-  document.getElementById('loader').style.display = 'none';
-  document.getElementById('no-connection').style.display = 'block';
-}
-
 function showRestaurants(restaurants) {
-  console.log("showRestaurants");
-  document.getElementById('loader').style.display = 'none';
+  loaderNone();
   document.getElementById('restaurants').innerHTML = restaurants;
 }
 
 function main() {
-  console.log("clicked main");
   findLocation()
   .then(geoSuccess, geoFailure)
   .then(searchRestaurants)
