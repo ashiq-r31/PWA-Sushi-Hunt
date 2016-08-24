@@ -82,7 +82,7 @@ function geoSuccess(position) {
 function geoFailure(error){
   emptyNone();
   if(error.code === 2) {
-    searchFail();
+    connectionFail();
   } else {
     gpsFail();
   }
