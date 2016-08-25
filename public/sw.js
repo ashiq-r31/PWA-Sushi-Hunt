@@ -1,5 +1,6 @@
 var urlsToCache_ = [
   '/',
+  '/views/app-shell.handlebars',
   '/stylesheets/main.css',
   '/images/sushi.svg',
   '/images/empty.svg',
@@ -13,7 +14,7 @@ var urlsToCache_ = [
   '/manifest.json'
 ];
 
-version = 'v10';
+version = 'v11';
 
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker] Installed version', version);
