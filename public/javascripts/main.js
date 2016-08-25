@@ -59,6 +59,10 @@ function connectionFail() {
   document.getElementById('no-connection').style.display = 'block';
 }
 
+function connectionFailNone() {
+  document.getElementById('no-connection').style.display = 'none';
+}
+
 function findLocation() {
     return new Promise(function(resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -91,6 +95,7 @@ function geoFailure(error){
 
 function searchRestaurants(latlng) {
   emptyNone();
+  connectionFailNone();
   document.getElementById('restaurants').innerHTML = '';
   loaderBlock();
   return get('/results/?lat=' + latlng.lat + '&long=' + latlng.long);
