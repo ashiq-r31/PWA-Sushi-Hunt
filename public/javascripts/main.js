@@ -68,7 +68,7 @@ function connectionFailNone() {
 function findLocation() {
     alert('findLocation initiated');
     return new Promise(function(resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
+    navigator.geolocation.getCurrentPosition(resolve, reject, {timeout: 5000});
   });
 };
 
