@@ -29,6 +29,7 @@ function get(url) {
     };
 
     req.onerror = function() {
+      alert("XHR failed though!");
       connectionFail();
       reject(Error("Network Error"));
     };
@@ -86,6 +87,7 @@ function geoSuccess(position) {
 function geoFailure(error){
   emptyNone();
   if(error.code === 2) {
+    alert("geolocation Web API request failed hard!");
     connectionFail();
   } else {
     gpsFail();
