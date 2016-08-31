@@ -38,7 +38,8 @@ function get(url) {
   })
 }
 
-function gpsFail() {
+function gpsFail(error) {
+  alert(error);
   document.getElementById('lat').innerHTML = "Bad news! We cannot find you.";
   document.getElementById('no-location').style.display = 'block';
 }
@@ -93,7 +94,7 @@ function geoFailure(error){
     alert("geolocation Web API request failed hard!");
     connectionFail();
   } else {
-    gpsFail();
+    gpsFail(error.code);
   }
   return Promise.reject(error.code);
 }
