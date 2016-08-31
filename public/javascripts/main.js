@@ -42,6 +42,12 @@ function gpsFail(error) {
   alert(error);
   document.getElementById('lat').innerHTML = "Bad news! We cannot find you.";
   document.getElementById('no-location').style.display = 'block';
+  if (error === 1) {
+    document.getElementById('location-error').innerHTML = "Are you sure your location \n service is switched on?";
+  } else if(error === 3) {
+    document.getElementById('location-error').innerHTML = "Location search timed out \n We need the internet";
+  }
+
 }
 
 function emptyNone() {
