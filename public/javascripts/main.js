@@ -14,7 +14,7 @@ console.log('Geolocation is not supported for this Browser/OS version yet.');
 }
 
 function get(url) {
-  alert('get url initiated');
+  // alert('get url initiated');
   console.log("get url");
   return new Promise(function(resolve, reject) {
     var req = new XMLHttpRequest();
@@ -30,7 +30,7 @@ function get(url) {
     };
 
     req.onerror = function() {
-      alert("XHR failed though!");
+      // alert("XHR failed though!");
       connectionFail();
       reject(Error("Network Error"));
     };
@@ -39,7 +39,7 @@ function get(url) {
 }
 
 function gpsFail(error) {
-  alert(error);
+  // alert(error);
   document.getElementById('lat').innerHTML = "Bad news! We cannot find you";
   document.getElementById('no-location').style.display = 'block';
   if (error === 1) {
@@ -72,14 +72,14 @@ function connectionFailNone() {
 }
 
 function findLocation() {
-    alert('findLocation initiated');
+    // alert('findLocation initiated');
     return new Promise(function(resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject, {timeout: 5000});
   });
 };
 
 function geoSuccess(position) {
-  alert('geoSuccess initiated');
+  // alert('geoSuccess initiated');
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
   var latshort = lat.toFixed(10) + ", ";
@@ -120,7 +120,7 @@ function showRestaurants(restaurants) {
 }
 
 function main() {
-  alert('detect tapped');
+  // alert('detect tapped');
   findLocation()
   .then(geoSuccess, geoFailure)
   .then(searchRestaurants)
