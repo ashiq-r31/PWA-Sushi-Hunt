@@ -40,14 +40,13 @@ function get(url) {
 
 function gpsFail(error) {
   alert(error);
-  document.getElementById('lat').innerHTML = "Bad news! We cannot find you.";
+  document.getElementById('lat').innerHTML = "Bad news! We cannot find you";
   document.getElementById('no-location').style.display = 'block';
   if (error === 1) {
-    document.getElementById('location-error').innerHTML = "Are you sure your location \n service is switched on?";
+    document.getElementById('location-error').innerHTML = "Are you sure your location <br> service is switched on?";
   } else if(error === 3) {
-    document.getElementById('location-error').innerHTML = "Location search timed out \n We need the internet";
+    document.getElementById('location-error').innerHTML = "Location search timed out, <br> We need the internet";
   }
-
 }
 
 function emptyNone() {
@@ -64,7 +63,7 @@ function loaderBlock() {
 
 function connectionFail() {
   loaderNone();
-  document.getElementById('lat').innerHTML = "Bad news! We need the internet.";
+  document.getElementById('lat').innerHTML = "Bad news! We need the internet";
   document.getElementById('no-connection').style.display = 'block';
 }
 
@@ -97,7 +96,7 @@ function geoSuccess(position) {
 function geoFailure(error){
   emptyNone();
   if(error.code === 2) {
-    alert("geolocation Web API request failed hard!");
+    // alert("geolocation Web API request failed hard!");
     connectionFail();
   } else {
     gpsFail(error.code);
@@ -106,7 +105,7 @@ function geoFailure(error){
 }
 
 function searchRestaurants(latlng) {
-  alert('searchRestaurants initiated');
+  // alert('searchRestaurants initiated');
   emptyNone();
   connectionFailNone();
   document.getElementById('restaurants').innerHTML = '';
