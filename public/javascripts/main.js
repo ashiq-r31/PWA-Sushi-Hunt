@@ -45,7 +45,7 @@ function gpsFail(error) {
   if (error === 1) {
     document.getElementById('location-error').innerHTML = "Are you sure your location <br> service is switched on?";
   } else if(error === 3) {
-    document.getElementById('location-error').innerHTML = "Location search timed out <br> we need the internet to work";
+    document.getElementById('location-error').innerHTML = "Are you moving? Hold still, <br> so we can find you!";
   }
 }
 
