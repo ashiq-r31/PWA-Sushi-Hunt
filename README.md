@@ -4,7 +4,7 @@ A progressive web app that lets you find the best sushi restaurants around you. 
 Visit https://sushi-hunt.herokuapp.com/ on your mobile Chrome browser on your Android device. 
 Head to 'settings' in Chrome and tap 'Add to Home Screen' to see it in action.
 
-##A progressive web is powered by the following
+##What makes an app progressive
 
 ###Service Worker
 A Service Worker is a script that runs on your browser as a separate thread from your regular Javascript that you use to access the DOM or other Web APIs in the front-end. The Service Worker can intercept network requests and can be used to communicate with browser storage mechanisms like Cache or IndexedDb to retrieve your web app’s assets to create offline experiences.
