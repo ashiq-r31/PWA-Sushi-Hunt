@@ -30,8 +30,8 @@ The Web App Manifest is a JSON file that stores information about the app such a
 Perhaps the most critical component of all, if you’re interested in deploying your app is to make sure your user connection to the web server is protected by the HTTPS protocol. Without the HTTPS, the power of our Service Worker makes the application vulnerable to man-in-the-middle attacks.
 
 ##My step by step guide to build this PWA
-Part1: https://blog.prototypr.io/create-a-web-app-that-works-offline-part-1-a9c2b130441e#.ekv6ng6vq
-Part2: https://blog.prototypr.io/create-a-web-app-that-works-offline-part-2-cc1827beea9f#.2oys2pzai
-Part3: https://blog.prototypr.io/create-a-web-app-that-feels-native-part-3-dbbf46444791#.nt88nqcth
-Part4: (Coming soon)
+*Part1: https://blog.prototypr.io/create-a-web-app-that-works-offline-part-1-a9c2b130441e#.ekv6ng6vq
+*Part2: https://blog.prototypr.io/create-a-web-app-that-works-offline-part-2-cc1827beea9f#.2oys2pzai
+*Part3: https://blog.prototypr.io/create-a-web-app-that-feels-native-part-3-dbbf46444791#.nt88nqcth
+*Part4: (Coming soon)
 
