@@ -14,7 +14,7 @@ var urlsToCache_ = [
   '/manifest.json'
 ];
 
-version = 'v1';
+var version = 'v1';
 
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker] Installed version', version);

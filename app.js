@@ -9,14 +9,12 @@ var router = express.Router();
 var request = require('request');
 var exphbs  = require('express-handlebars');
 
-
-app.engine('handlebars', exphbs({partialsDir: __dirname + 'public/views/partials'}));
+// app.engine('handlebars', exphbs({partialsDir: __dirname + 'public/views/partials'}));
 app.set('view engine', 'handlebars');
 
+app.engine('handlebars', exphbs({extname: 'handlebars'}));
 app.set('views', __dirname + '/public/views');
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 
 //main routes for the app
 
@@ -35,47 +33,35 @@ router.get('/results', function(req, res){
     gzip:true
   };
 
-  function shortenString(arr, string){
+  function shortenString(string){
     if (string.length > 25) {
-      return arr.string = string.substr(0, 24) + "..";
-    } else {
-      return arr.string = string;
+        string.substr(0, 24) + "..";
     }
+    return string;
   }
 
   function checkRestaurants(object) {
     if (object.length === 0) {
-
       res.render('partials/no-restaurants');
-
     } else {
-
       var results = object.map(function(obj){
-        var arr = {};
-
-        var name = obj.restaurant.name;
-        arr.name = shortenString(arr, name);
-
-        arr.currency = obj.restaurant.currency;
-        arr.cost_for_two = obj.restaurant.average_cost_for_two;
-
-        var location = obj.restaurant.location.locality;
-        arr.location = shortenString(arr, location);
-
-        arr.lat = obj.restaurant.location.latitude;
-        arr.long = obj.restaurant.location.longitude;
-
-        arr.rating = obj.restaurant.user_rating.aggregate_rating;
-        arr.thumb = obj.restaurant.thumb;
-
-        if (arr.thumb.length === 0) {
-          arr.thumb = "images/img-placeholder.svg";
+        var thumb = obj.restaurant.thumb;
+        if (thumb.length === 0) {
+            thumb = "images/img-placeholder.svg";
         }
-
-        return arr;
+        return {
+            name: shortenString(obj.restaurant.name),
+            currency: obj.restaurant.currency,
+            cost_for_two: obj.restaurant.average_cost_for_two,
+            location: shortenString(obj.restaurant.location.locality),
+            lat: obj.restaurant.location.latitude,
+            long: obj.restaurant.location.longitude,
+            rating: obj.restaurant.user_rating.aggregate_rating,
+            thumb: thumb,
+        }
       });
 
-      res.render('partials/results', {filtered:results});
+      res.render('partials/results', {filtered: results});
     }
   }
 
@@ -84,9 +70,7 @@ router.get('/results', function(req, res){
     if(!err && response.statusCode === 200) {
       var respObj = JSON.parse(body);
       var restaurants = respObj.restaurants;
-
       checkRestaurants(restaurants);
-
     } else {
       console.log(error);
     }

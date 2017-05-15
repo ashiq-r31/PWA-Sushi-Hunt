@@ -38,16 +38,6 @@ function get(url) {
   })
 }
 
-function gpsFail(error) {
-  // alert(error);
-  document.getElementById('lat').innerHTML = "Bad news! We cannot find you";
-  document.getElementById('no-location').style.display = 'block';
-  if (error === 1) {
-    document.getElementById('location-error').innerHTML = "Are you sure your location <br> service is switched on?";
-  } else if(error === 3) {
-    document.getElementById('location-error').innerHTML = "Are you moving? Hold still, <br> so we can find you!";
-  }
-}
 
 function emptyNone() {
   document.getElementById('empty').style.display = 'none';
@@ -92,6 +82,18 @@ function geoSuccess(position) {
 
   return latlng;
 };
+
+function gpsFail(error) {
+  // alert(error);
+  document.getElementById('lat').innerHTML = "Bad news! We cannot find you";
+  document.getElementById('no-location').style.display = 'block';
+  if (error === 1) {
+    document.getElementById('location-error').innerHTML = "Are you sure your location <br> service is switched on?";
+  } else if(error === 3) {
+    document.getElementById('location-error').innerHTML = "Are you moving? Hold still, <br> so we can find you!";
+  }
+}
+
 
 function geoFailure(error){
   emptyNone();
