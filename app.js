@@ -1,22 +1,29 @@
+// setup
 var express = require('express');
 var favicon = require('serve-favicon');
-
-var app = express();
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
-
-var path = require('path');
-var router = express.Router();
-var request = require('request');
 var exphbs  = require('express-handlebars');
+var request = require('request');
+var path = require('path');
+var app = express();
 
-// app.engine('handlebars', exphbs({partialsDir: __dirname + 'public/views/partials'}));
-app.set('view engine', 'handlebars');
-
-app.engine('handlebars', exphbs({extname: 'handlebars'}));
-app.set('views', __dirname + '/public/views');
+// Use the public folder as the starting point for src tags in our views
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set view engine to be Handlebars
+app.set('view engine', '.hbs');
+
+// Set extension for view files as .hbs
+app.engine('.hbs', exphbs({extname: '.hbs'}));
+
+// Set the path directory for view templates
+app.set('views', __dirname + '/public/views');
+
+// Set path for favicon
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
+
 //main routes for the app
+var router = express.Router();
 
 router.get('/', function(req, res){
   res.render('app-shell');
@@ -81,7 +88,6 @@ router.get('/results', function(req, res){
 });
 
 app.use('/', router);
-
 
 app.set('port', (process.env.PORT || 5000));
 
