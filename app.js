@@ -29,7 +29,9 @@ router.get('/results', function(req, res){
 
   var options = {
     url : url,
-    headers: {'user-key':'f5f2528732be2d46729a68d5754da4d9'},
+    headers: {
+      'user-key': //your Zomato API key
+    },
     gzip:true
   };
 
