@@ -4,15 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "deploy": "git add . && git commit -m 'app-update' && git push heroku master"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0",
-    "serve-favicon":"*",
-    "body-parser":"*",
-    "request":"*",
-    "express-handlebars":"*"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "*",
+    "request": "^2.88.0",
+    "serve-favicon": "^2.5.0"
   }
 }
