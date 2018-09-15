@@ -130,11 +130,11 @@ app.addComponent({
         try {
           const results = await store.getResults(`/results/?lat=${coords.lat}&long=${coords.long}`)
           store.setState({ results, loader: false })
-        } catch (e) {
-          store.setState({ error: e })
+        } catch (err) {
+          store.setState({ error: err })
         }
-      } catch (e) {
-        store.setState({ error: e.code })
+      } catch (err) {
+        store.setState({ error: err.code })
       }
     })
   }
