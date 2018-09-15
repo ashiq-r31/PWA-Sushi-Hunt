@@ -35,7 +35,6 @@ const noLocation = (error) => (
 )
 
 const header = (state) => {
-  console.log(state)
   let location = `Tap 'Detect' to find sushi nearby`
   if (state.coords.lat && state.coords.long) location = `${state.coords.lat}, ${state.coords.long}`
   else if (state.geoError && state.geoError !== 2) location = `Bad news! We cannot find you`
