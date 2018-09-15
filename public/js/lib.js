@@ -15,7 +15,7 @@ class App {
 
   updateView() {
     if(this.currentComponent) {
-      this.element.innerHTML = this.currentComponent.template(this.currentComponent.store.state)
+      this.element.innerHTML = this.currentComponent.store && this.currentComponent.template(this.currentComponent.store.state) || this.currentComponent.template()
       this.currentComponent.init && this.currentComponent.init(this.currentComponent.store)
     } else {
       this.element.innerHTML = 'Not Found'
@@ -42,17 +42,5 @@ class Router {
     const route = this.routes.filter(route => hash.match(new RegExp(route.url)))[0]
     if(route) this.app.showComponent(route.name)
     else this.app.showComponent()
-  }
-}
-
-
-class View {
-  constructor(template, events = {}) {
-    this.template = template
-    this.events = events
-  }
-
-  render(store) {
-    return this.template(store)
   }
 }

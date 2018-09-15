@@ -12,35 +12,11 @@ if (navigator.geolocation) {
   console.log('Geolocation is not supported for this Browser/OS version yet.');
 }
 
-const get = (url) => {
-  console.log("get url");
-  return new Promise(function (resolve, reject) {
-    var req = new XMLHttpRequest();
-
-    req.open('GET', url);
-    req.onload = function () {
-      if (req.status == 200) {
-        resolve(req.response);
-      }
-      else {
-        reject(Error(req.statusText));
-      }
-    };
-
-    req.onerror = function () {
-      reject(Error("Network Error"));
-    }
-    req.send();
-  })
-}
-
 // templates 
 const header = (store) => {
-  let str = store.coords.lat && store.coords.long
-    ? `${store.coords.lat}, ${store.coords.long}`
-    : (store.error && store.error !== 2)
-      ? `Bad news! We cannot find you`
-      : `Tap 'Detect' to find sushi nearby`
+  let str = `Tap 'Detect' to find sushi nearby`
+  if (store.coords.lat && store.coords.long) str = `${store.coords.lat}, ${store.coords.long}`
+  else if (store.error && store.error !== 2) str = `Bad news! We cannot find you`
 
   return (
     `<div class="header">
@@ -94,10 +70,11 @@ const results = (store) => {
   }
 }
 
-const template = (state) => (
+const home = (state) => (
   `${header(state)}
     <div id="results" class="container">
       ${results(state)}
+      <a href='/#/about'>About Us</a>
     </div>
   `
 )
@@ -125,30 +102,27 @@ const store = (app) => ({
   },
   getResults(url) {
     return new Promise(function (resolve, reject) {
-      const req = new XMLHttpRequest();
+      const req = new XMLHttpRequest()
       req.open('GET', url);
       req.onload = function () {
-        if (req.status == 200) {
-          resolve(req.response);
-        } else {
-          reject(Error(req.statusText));
-        }
+        if (req.status == 200) resolve(req.response)
+        else reject(Error(req.statusText))
       }
       req.onerror = function () {
-        reject(Error("Network Error"));
+        reject(Error("Network Error"))
       }
-      req.send();
+      req.send()
     })
   }
 })
 
 app.addComponent({
-  name: 'default',
-  template,
+  name: 'home',
+  template: home,
   store: store(app),
   init(store) {
     const button = document.getElementById('submit')
-    button.addEventListener('click', async () => {
+    button.addEventListener('click', async function () {
       try {
         const position = await store.getLocation()
         const coords = { lat: position.coords.latitude, long: position.coords.longitude }
@@ -156,18 +130,23 @@ app.addComponent({
         try {
           const results = await store.getResults(`/results/?lat=${coords.lat}&long=${coords.long}`)
           store.setState({ results, loader: false })
-        } catch(e) {
+        } catch (e) {
           store.setState({ error: e })
         }
-      } catch(e) {
+      } catch (e) {
         store.setState({ error: e.code })
       }
     })
   }
 })
 
-router.addRoute('default', '^#/$')
+app.addComponent({
+  name: 'about',
+  template: () => `<div>About Us</div>`
+})
 
+router.addRoute('home', '^#/$')
+router.addRoute('about', '^#/about$')
 
 
 
