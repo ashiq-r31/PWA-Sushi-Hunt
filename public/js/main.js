@@ -13,10 +13,11 @@ if (navigator.geolocation) {
 }
 
 // templates 
-const header = (store) => {
+const header = (state) => {
+  console.log(state)
   let str = `Tap 'Detect' to find sushi nearby`
-  if (store.coords.lat && store.coords.long) str = `${store.coords.lat}, ${store.coords.long}`
-  else if (store.error && store.error !== 2) str = `Bad news! We cannot find you`
+  if (state.coords.lat && state.coords.long) str = `${state.coords.lat}, ${state.coords.long}`
+  else if (state.error && state.error !== 2) str = `Bad news! We cannot find you`
 
   return (
     `<div class="header">
@@ -56,15 +57,15 @@ const noLocation = (error) => (
   </div>`
 )
 
-const results = (store) => {
-  if (store.loader) {
+const results = (state) => {
+  if (state.loader) {
     return loader()
-  } else if (store.error === 1) {
+  } else if (state.error === 1) {
     return noLocation(`Are you sure your location <br> service is switched on?`)
-  } else if (store.error === 3) {
+  } else if (state.error === 3) {
     return noLocation(`Are you moving? Hold still, <br> so we can find you!`)
-  } else if (store.results) {
-    return store.results
+  } else if (state.results) {
+    return state.results
   } else {
     return empty()
   }
@@ -84,12 +85,12 @@ const home = (state) => (
 const app = new App('#app')
 const router = new Router(app)
 
-const store = (app) => ({
+const createStore = (app) => ({
   state: {
     coords: {},
     results: null,
     error: false,
-    loader: false,
+    loader: false
   },
   setState(obj) {
     this.state = { ...this.state, ...obj }
@@ -116,10 +117,12 @@ const store = (app) => ({
   }
 })
 
+const store = createStore(app)
+
 app.addComponent({
   name: 'home',
   template: home,
-  store: store(app),
+  store,
   init(store) {
     const button = document.getElementById('submit')
     button.addEventListener('click', async function () {
@@ -142,7 +145,8 @@ app.addComponent({
 
 app.addComponent({
   name: 'about',
-  template: () => `<div>About Us</div>`
+  store,
+  template: (state) => `<div>${state.coords.lat} ${state.coords.long}</div>`
 })
 
 router.addRoute('home', '^#/$')
