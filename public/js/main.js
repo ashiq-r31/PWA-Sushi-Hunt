@@ -96,7 +96,10 @@ const store = {
   }),
   getLocation() {
     return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, { maximumAge: 0, timeout: 10000 })
+      navigator.geolocation.getCurrentPosition(resolve, reject, { 
+        maximumAge: 0, 
+        timeout: 10000 
+      })
     })
   },
   getResults(url) {
