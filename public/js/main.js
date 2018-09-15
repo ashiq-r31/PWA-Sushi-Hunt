@@ -33,6 +33,7 @@ const noLocation = (error) => (
     <h4 id="location-error" class="h4">${error}</h4>
   </div>`
 )
+
 const header = (state) => {
   console.log(state)
   let location = `Tap 'Detect' to find sushi nearby`
@@ -147,6 +148,7 @@ app.addComponent({
 })
 
 // routes
+
 router.addRoute('home', '^#/$')
 router.addRoute('about', '^#/about$')
 
