@@ -34,7 +34,7 @@ router.get('/results', function (req, res) {
   request(options, (err, response, body) => {
     if (!err && response.statusCode === 200) {
       const result = JSON.parse(body)
-      if(!result.length) res.render('partials/no-restaurants')
+      if(!result.restaurants.length) res.render('partials/no-restaurants')
       else res.render('partials/results', { restaurants: createRestaurants(result.restaurants) })
     } else {
       console.log(err)
