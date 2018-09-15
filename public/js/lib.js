@@ -15,8 +15,8 @@ class App {
 
   updateView() {
     if(this.currentComponent) {
-      this.element.innerHTML = this.currentComponent.store && this.currentComponent.template(this.currentComponent.store.state) || this.currentComponent.template()
-      this.currentComponent.init && this.currentComponent.init(this.currentComponent.store)
+      this.element.innerHTML = this.currentComponent.template(this.currentComponent.store.getState())
+      this.currentComponent.initialize && this.currentComponent.initialize(this.currentComponent.store)
     } else {
       this.element.innerHTML = 'Not Found'
     }

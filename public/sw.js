@@ -2,7 +2,6 @@ var urlsToCache_ = [
   '/#/',
   '/views/app-shell.hbs',
   '/stylesheets/main.css',
-  '/images/sushi.svg',
   '/images/empty.svg',
   '/images/no-location.svg',
   '/images/sad.svg',

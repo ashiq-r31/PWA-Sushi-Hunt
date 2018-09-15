@@ -116,15 +116,12 @@ label {
   margin-bottom:2rem;
 }
 
-/* Results Screen */
-
-/* Header */
-
-.results-screen {
+body {
   background-color: #F2F5F8;
 }
 
 
+/* Header */
 .header {
   width: 100%;
   height: 76px;
@@ -132,7 +129,7 @@ label {
   padding: 16px 16px 0 10px;
   top: 0;
   padding: 16px 16px 0 10px;
-  /* z-index: -1000; */
+  z-index: -1;
  }
 
 .header .placeholder,

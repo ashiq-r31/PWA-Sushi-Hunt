@@ -1,7 +1,7 @@
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
-  .then(registration => console.log('ServiceWorker registration successful with scope: ', registration.scope))
-  .catch(err => console.log('ServiceWorker registration failed: ', err))
+    .then(registration => console.log('ServiceWorker registration successful with scope: ', registration.scope))
+    .catch(err => console.log('ServiceWorker registration failed: ', err))
 }
 
 if (navigator.geolocation) console.log('Geolocation is supported!')
@@ -10,11 +10,7 @@ else console.log('Geolocation is not supported for this Browser/OS version yet.'
 // templates 
 const loader = () => (
   `<div id="loader" class="loadSpin">
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-       width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve">
-      <path fill="#8a8a8a" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-      </path>
-    </svg>
+    <img src='images/loader.svg'>
   </div>`
 )
 
@@ -73,7 +69,7 @@ const home = (state) => (
   `
 )
 
-// application 
+// setup
 
 const app = new App('#app')
 const router = new Router(app)
@@ -83,8 +79,13 @@ const createStore = (app, state) => ({
   setState(object) {
     this.state = { ...this.state, ...object }
     app.updateView()
+  },
+  getState(name) {
+    return this.state[name] || this.state
   }
 })
+
+// store
 
 const store = {
   ...createStore(app, {
@@ -94,23 +95,12 @@ const store = {
     loader: false
   }),
   getLocation() {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, { maximumAge: 0, timeout: 10000 })
     })
   },
   getResults(url) {
-    return new Promise(function (resolve, reject) {
-      const req = new XMLHttpRequest()
-      req.open('GET', url)
-      req.onload = function () {
-        if (req.status == 200) resolve(req.response)
-        else reject(Error(req.statusText))
-      }
-      req.onerror = function () {
-        reject(Error("Network Error"))
-      }
-      req.send()
-    })
+    return fetch(url).then(response => response.text())
   }
 }
 
@@ -120,9 +110,9 @@ app.addComponent({
   name: 'home',
   template: home,
   store,
-  init(store) {
+  initialize(store) {
     const button = document.getElementById('submit')
-    button.addEventListener('click', async function() {
+    button.addEventListener('click', async function () {
       try {
         const position = await store.getLocation()
         const coords = { lat: position.coords.latitude, long: position.coords.longitude }
