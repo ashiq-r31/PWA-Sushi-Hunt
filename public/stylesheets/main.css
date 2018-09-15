@@ -132,7 +132,7 @@ label {
   padding: 16px 16px 0 10px;
   top: 0;
   padding: 16px 16px 0 10px;
-  z-index: -1000;
+  /* z-index: -1000; */
  }
 
 .header .placeholder,
