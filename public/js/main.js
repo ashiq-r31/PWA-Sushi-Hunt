@@ -70,7 +70,6 @@ const home = (state) => (
 )
 
 // setup
-
 const app = new App('#app')
 const router = new Router(app)
 
@@ -86,7 +85,6 @@ const createStore = (app, state) => ({
 })
 
 // store
-
 const store = {
   ...createStore(app, {
     coords: {},
@@ -108,7 +106,6 @@ const store = {
 }
 
 // components 
-
 app.addComponent({
   name: 'home',
   template: home,
@@ -140,7 +137,6 @@ app.addComponent({
 })
 
 // routes
-
 router.addRoute('home', '^#/$')
 router.addRoute('about', '^#/about$')
 
