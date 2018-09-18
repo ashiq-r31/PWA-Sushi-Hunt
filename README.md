@@ -1,4 +1,7 @@
 # Sushi Hunt
+
+Quick note: The current version of the codebase is different from the one covered in the blogs. It's now written in a custom MVC like solution for extendability.
+
 A progressive web app that lets you find the best sushi restaurants around you. The app currently uses Zomato's API to retrieve the list of restaurant recommendations. 
 
 Visit https://sushi-hunt.herokuapp.com/ on your mobile Chrome browser on your Android device. 
