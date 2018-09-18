@@ -30,10 +30,19 @@ const noLocation = (error) => (
   </div>`
 )
 
+const noInternet = () => (
+  `<div id="no-connection" class="fadeIn">
+    <img src="images/sad.svg">
+    <h1 class="h2">You are not connected<h1>
+    <h4 id="location-error" class="h4">Your lack of internet has gotten<br> between you and your sushi</h4>
+  </div>`
+)
+
 const header = (state) => {
   let location = `Tap 'Detect' to find sushi nearby`
-  if (state.coords.lat && state.coords.long) location = `${state.coords.lat}, ${state.coords.long}`
-  else if (state.geoError && state.geoError !== 2) location = `Bad news! We cannot find you`
+  if (state.coords.lat && state.coords.long && !state.geoError && !state.resultsError ) location = `${state.coords.lat}, ${state.coords.long}`
+  else if (state.geoError === 1 || state.geoError === 3) location = `Bad news! We cannot find you`
+  else if(state.geoError === 2 || state.resultsError) location = `Bad news! We need the internet`
 
   return `<div class="header">
       <div class="block container">
@@ -51,6 +60,8 @@ const results = (state) => {
     return loader()
   } else if (state.geoError === 1) {
     return noLocation(`Are you sure your location <br> service is switched on?`)
+  } else if (state.geoError === 2 || state.resultsError) {
+    return noInternet()
   } else if (state.geoError === 3) {
     return noLocation(`Are you moving? Hold still, <br> so we can find you!`)
   } else if (state.results) {
@@ -64,7 +75,11 @@ const home = (state) => (
   `${header(state)}
     <div id="results" class="container">
       ${results(state)}
-      <a href='/#/about'>About Us</a>
+      <div style="display: block" class="center">
+        <a href='/#/secret'>
+          <button id="secret">Secret Link</button>
+        </a>
+      </div>
     </div>
   `
 )
@@ -90,6 +105,7 @@ const store = {
     coords: {},
     geoError: false,
     results: null,
+    resultsError: false,
     loader: false
   }),
   getLocation() {
@@ -118,7 +134,7 @@ app.addComponent({
           const results = await store.getResults(`/results/?lat=${coords.lat}&long=${coords.long}`)
           store.setState({ results, loader: false })
         } catch (err) {
-          console.log(err)
+          store.setState({ resultsError: true, loader: false })
         }
       } catch (err) {
         store.setState({ geoError: err.code })
@@ -128,14 +144,17 @@ app.addComponent({
 })
 
 app.addComponent({
-  name: 'about',
+  name: 'secret',
   store,
-  template: (state) => `<div>${state.coords.lat} ${state.coords.long}</div>`
+  template: (state) => { 
+    let str = state.coords.lat && state.coords.long && `${state.coords.lat} ${state.coords.long}` || `Tap detect`
+    return `<div class="centered"><h1>${str}</h1></div>`
+  }
 })
 
 // routes
 router.addRoute('home', '^#/$')
-router.addRoute('about', '^#/about$')
+router.addRoute('secret', '^#/secret$')
 
 
 

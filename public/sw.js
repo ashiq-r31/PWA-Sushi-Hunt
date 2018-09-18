@@ -4,17 +4,18 @@ var urlsToCache_ = [
   '/stylesheets/main.css',
   '/images/empty.svg',
   '/images/no-location.svg',
+  '/images/loader.svg',
   '/images/sad.svg',
   '/images/pin.svg',
   '/images/star.svg',
   '/images/detect.svg',
   '/images/sushi-196.png',
-  'js/lib.js',
+  '/js/lib.js',
   '/js/main.js',
   '/manifest.json'
 ];
 
-var version = 'v1';
+var version = 'v15';
 
 self.addEventListener('install', function (event) {
   console.log('[ServiceWorker] Installed version', version);

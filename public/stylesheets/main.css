@@ -80,6 +80,24 @@ input[type="number"] {
   min-width: 65%;
 }
 
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#secret {
+  background-color: #818181;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  font-family: 'Karla', sans-serif;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
 #submit {
   background-color: #FF6A9C;
   -webkit-appearance: none;
@@ -143,7 +161,6 @@ body {
   left:45%;
   transform:translate(-50%, -50%)
 }
-
 
 /* Results */
 
@@ -251,7 +268,7 @@ body {
   }
 }
 
-keyframes loadSpin {
+@keyframes loadSpin {
   from {
     -webkit-transform: rotate(0deg);
   }
