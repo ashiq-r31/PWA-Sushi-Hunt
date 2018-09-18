@@ -1,0 +1,40 @@
+
+{{#each restaurants}}
+<div class="restaurant clearfix animated fadeIn">
+  <div style="display:inline-block">
+    <img src='{{thumb}}' class="thumb"/>
+
+  </div>
+
+  <div style="display:inline-block" class="info">
+
+    <div class="row">
+      <h4 class="h4">{{name}}</h1>
+    </div>
+
+    <div class="row">
+      <a href="https://www.google.com/maps/place/{{lat}}+{{long}}/@{{lat}},{{long}},15z">
+      <div style="display:inline-block" class="bubble">
+        <img src="images/pin.svg">
+        <p>{{location}}</p>
+      </div>
+      </a>
+    </div>
+
+    <div class="row">
+      <div style="display:inline-block" class="bubble">
+        <img src="images/star.svg"/>
+        <p>{{rating}}</p>
+      </div>
+
+      <div style="display:inline-block;margin-left:0.5rem " class="bubble">
+        <p>
+          <span style="font-size:1.4rem; font-weight:400; margin-left:0.5rem; color:#777777;">{{currency}}</span> {{cost_for_two}}
+        </p>
+      </div>
+    </div>
+
+  </div> <!--info ends here-->
+
+</div> <!--restaurant ends here-->
+{{/each}}
